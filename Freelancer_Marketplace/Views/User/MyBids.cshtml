@@ -1,0 +1,509 @@
+﻿@model List<Freelancer_Marketplace.Models.MyBidsViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="~/Content/assets/"
+      data-template="horizontal-menu-template">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>My Bids</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon"
+          type="image/x-icon"
+          href="~/Content/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    @Styles.Render("~/Content/maincss")
+    @Scripts.Render("~/bundles/script1")
+    
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+        <div class="layout-container">
+            <!-- Navbar -->
+
+            <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+                <div class="container-xxl">
+                    <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
+                        <a href="Index" class="app-brand-link gap-2">
+                            <span class="app-brand-logo demo">
+                                <svg width="32"
+                                     height="22"
+                                     viewBox="0 0 32 22"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                                          fill="#7367F0" />
+                                    <path opacity="0.06"
+                                          fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                                          fill="#161616" />
+                                    <path opacity="0.06"
+                                          fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                                          fill="#161616" />
+                                    <path fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                                          fill="#7367F0" />
+                                </svg>
+                            </span>
+                            <span class="app-brand-text demo menu-text fw-bold">Freelancer Marketplace</span>
+                        </a>
+
+                        <a href="javascript:void(0);"
+                           class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
+                            <i class="ti ti-x ti-sm align-middle"></i>
+                        </a>
+                    </div>
+
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="ti ti-menu-2 ti-sm"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-nav-right d-flex align-items-center"
+                         id="navbar-collapse">
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- Search -->
+                            <li class="nav-item navbar-search-wrapper me-2 me-xl-0">
+                                <a class="nav-link search-toggler" href="javascript:void(0);">
+                                    <i class="ti ti-search ti-md"></i>
+                                </a>
+                            </li>
+                            <!-- /Search -->
+                            <!-- Style Switcher -->
+                            <li class="nav-item me-2 me-xl-0">
+                                <a class="nav-link style-switcher-toggle hide-arrow"
+                                   href="javascript:void(0);">
+                                    <i class="ti ti-md"></i>
+                                </a>
+                            </li>
+                            <!--/ Style Switcher -->
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow"
+                                   href="javascript:void(0);"
+                                   data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img src="~/Content/assets/img/avatars/1.png"
+                                             alt
+                                             class="h-auto rounded-circle" />
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="Account">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                        <img src="~/Content/assets/img/avatars/1.png"
+                                                             alt
+                                                             class="h-auto rounded-circle" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <span class="fw-semibold d-block">@Session["Username"]</span>
+                                                    <small class="text-muted">User</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="Account">
+                                            <i class="ti ti-user-check me-2 ti-sm"></i>
+                                            <span class="align-middle">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="AccountSettings">
+                                            <i class="ti ti-settings me-2 ti-sm"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="auth-login-cover.html"
+                                           target="_blank">
+                                            <i class="ti ti-logout me-2 ti-sm"></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                    </div>
+
+                    
+                    <div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
+                        <input type="text"
+                               class="form-control search-input border-0"
+                               placeholder="Search..."
+                               aria-label="Search..." />
+                        <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- / Navbar -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Menu -->
+                    <aside id="layout-menu"
+                           class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+                        <div class="container-xxl d-flex h-100">
+                            <ul class="menu-inner">
+                                <!-- Home Page -->
+                                <li class="menu-item">
+                                    <a href="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                                        <div data-i18n="Home Page">Home Page</div>
+                                    </a>
+                                </li>
+
+                                <!-- My On-Going Projects -->
+                                <li class="menu-item">
+                                    <a href="OnGoingProject" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
+                                        <div data-i18n="My On-Going Projects">
+                                            My On-Going Projects
+                                        </div>
+                                    </a>
+
+                                    <!-- <ul class="menu-sub">
+                                    <li class="menu-item">
+                                        <a href="layouts-without-menu.html" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-menu-2"></i>
+                                        <div data-i18n="Without menu">Without menu</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="~/Content/vertical-menu-template/" class="menu-link" target="_blank">
+                                        <i class="menu-icon tf-icons ti ti-layout-distribute-vertical"></i>
+                                        <div data-i18n="Vertical">Vertical</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layouts-fluid.html" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-maximize"></i>
+                                        <div data-i18n="Fluid">Fluid</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layouts-container.html" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-arrows-maximize"></i>
+                                        <div data-i18n="Container">Container</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layouts-blank.html" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-square"></i>
+                                        <div data-i18n="Blank">Blank</div>
+                                        </a>
+                                    </li>
+                                    </ul> -->
+                                </li>
+
+                                <!-- Apps -->
+                                <li class="menu-item active">
+                                    <a href="MyBids" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-brand-monday"></i>
+                                        <div data-i18n="My Bids">My Bids</div>
+                                    </a>
+                                </li>
+
+                                <!-- Components -->
+                                <li class="menu-item">
+                                    <a href="MyProjects" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-messages"></i>
+                                        <div data-i18n="My Projects">My Projects</div>
+                                    </a>
+                                </li>
+
+                                <!-- Forms -->
+                                <li class="menu-item">
+                                    <a href="userForm.html" class="menu-link">
+                                        <i class="menu-icon tf-icons ti ti-forms"></i>
+                                        <div data-i18n="Forms">Forms</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <!-- / Menu -->
+                    <!-- Content -->
+                    <div style=" padding-top: 5%; padding-left: 3.5%" class="row g-4">
+
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xl-4 col-lg-6 col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex align-items-start">
+                                                <div class="d-flex align-items-start">
+                                                    <div class="avatar me-2">
+                                                        <img src="~/Content/assets/img/icons/brands/social-label.png"
+                                                             alt="Avatar"
+                                                             class="rounded-circle" />
+                                                    </div>
+                                                    <div class="me-2 ms-1">
+                                                        <h5 class="mb-0">
+                                                            <a href="javascript:;"
+                                                               class="stretched-link text-body">@item.BrandName</a>
+                                                        </h5>
+                                                        <div class="client-info">
+                                                            <strong>Client: </strong><span class="text-muted">@item.ClientId</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ms-auto">
+                                                    <div class="dropdown zindex-2">
+                                                        <button type="button"
+                                                                class="btn dropdown-toggle hide-arrow p-0"
+                                                                data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                            <i class="ti ti-dots-vertical text-muted"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end">
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                   href="javascript:void(0);">View details</a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                   href="javascript:void(0);">Add to favorites</a>
+                                                            </li>
+                                                            <li>
+                                                                <hr class="dropdown-divider" />
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ... Other card content ... -->
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center flex-wrap">
+                                                <!-- Budget information -->
+                                                <div class="bg-lighter px-3 py-2 rounded me-auto mb-3">
+                                                    <h6 class="mb-0">
+                                                        @item.Budget
+                                                    </h6>
+                                                    <span>Total Budget</span>
+                                                </div>
+                                                <!-- Date information -->
+                                                <div class="text-end mb-3">
+                                                    <h6 class="mb-0">
+                                                        Start Date:
+                                                        <span class="text-body fw-normal">@item.DateCreated.ToString("MM/dd/yy")</span>
+                                                    </h6>
+                                                    <h6 class="mb-1">
+                                                        Deadline:
+                                                        <span class="text-body fw-normal">@item.Deadline.ToString("MM/dd/yy")</span>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <!-- Project description -->
+                                            <p class="mb-0">
+                                                @item.ProjectDescription
+                                            </p>
+                                        </div>
+                                        <div class="card-body border-top">
+                                            <!-- Your Bid -->
+                                            <div class="d-flex align-items-center mb-3">
+                                                <h6 class="mb-1">
+                                                    Your Bid:
+                                                    <span class="text-body fw-normal">@item.BidAmount</span>
+                                                </h6>
+                                                @if (item.IsApproved)
+                                                {
+                                                    <span class="badge bg-label-success ms-auto">Approved</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-label-danger ms-auto">Not Yet Approved</span>
+                                                }
+                                            </div>
+                                            <!-- Proposal Text -->
+                                            <div class="d-flex align-items-center mb-3">
+                                                <h6 class="mb-1">
+                                                    Your Proposal Text:
+                                                    <span class="text-body fw-normal">
+                                                        @item.ProposalText
+                                                    </span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+
+                        <!--/ Projects table -->
+                    </div>
+
+                    <!--/ Content -->
+                    <!-- Advanced footer -->
+                    <footer class="footer bg-light">
+                        <div class="container-fluid container-p-x pt-5 pb-4">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
+                                    <h4 class="fw-bolder mb-3">
+                                        <a href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/landing-page/"
+                                           target="_blank"
+                                           class="footer-text">
+                                            Vuexy
+                                        </a>
+                                    </h4>
+                                    <span>Get ready for better world</span>
+                                    <div class="social-icon my-3">
+                                        <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook me-2">
+                                            <i class="ti ti-brand-facebook"></i>
+                                        </a>
+                                        <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-twitter me-2">
+                                            <i class="ti ti-brand-twitter"></i>
+                                        </a>
+                                        <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-linkedin me-2">
+                                            <i class="ti ti-brand-linkedin"></i>
+                                        </a>
+                                        <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-github">
+                                            <i class="ti ti-brand-github"></i>
+                                        </a>
+                                    </div>
+                                    <p class="pt-4">
+                                        <script>
+                                            document.write(new Date().getFullYear());
+                                        </script>
+                                        
+                                    </p>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
+                                    <h5>Company</h5>
+                                    <ul class="list-unstyled">
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">About</a></li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="footer-link d-block pb-2">Career <span class="badge bg-label-primary text-capitalize">We're hiring</span></a>
+                                        </li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Blog</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Customers</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Hire us</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">FAQs</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
+                                    <h5>Products</h5>
+                                    <ul class="list-unstyled">
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Admin Template</a></li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="footer-link d-block pb-2">UI Kit</a>
+                                        </li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Styleguide</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">API</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Documentation</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Changelog</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3">
+                                    <h5>Features</h5>
+                                    <ul class="list-unstyled">
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Affiliate Program</a></li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="footer-link d-block pb-2">Integration</a>
+                                        </li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Support</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Special Offers</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Page Builder</a></li>
+                                        <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Plans & Pricing</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                    <!--/ Advanced footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!--/ Content wrapper -->
+            </div>
+
+            <!--/ Layout container -->
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+
+    <!--/ Layout wrapper -->
+    <!-- Core JS -->
+    @Scripts.Render("~/bundles/mainscript2")
+    <!-- build:js assets/vendor/js/core.js -->
+    <!--<script src="~/Content/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/Content/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/Content/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/Content/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/Content/assets/vendor/libs/node-waves/node-waves.js"></script>
+
+    <script src="~/Content/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="~/Content/assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="~/Content/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+    <script src="~/Content/assets/vendor/js/menu.js"></script>-->
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <!--<script src="~/Content/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="~/Content/assets/vendor/libs/swiper/swiper.js"></script>
+    <script src="~/Content/assets/vendor/libs/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="~/Content/assets/vendor/libs/datatables-responsive/datatables.responsive.js"></script>
+    <script src="~/Content/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js"></script>
+    <script src="~/Content/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js"></script>-->
+    <!-- <script src="~/Content/assets/vendor/libs/chartjs/chartjs.js"></script> -->
+    <!--<script src="~/Content/assets/vendor/libs/chartjs/chartjs.js"></script>
+    <script src="~/Content/assets/js/charts-chartjs.js"></script>-->
+    <!-- Main JS -->
+    <!--<script src="~/Content/assets/js/main.js"></script>-->
+    <!-- Page JS -->
+    <!--<script src="~/Content/assets/js/dashboards-analytics.js"></script>*-->
+</body>
+</html>

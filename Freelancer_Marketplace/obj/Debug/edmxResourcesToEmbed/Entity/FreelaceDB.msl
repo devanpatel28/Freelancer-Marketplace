@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Freelancer_Marketplace_DBModelStoreContainer" CdmEntityContainer="FreelanceDB">
+    <EntitySetMapping Name="bids">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.bid">
+        <MappingFragment StoreEntitySet="bids">
+          <ScalarProperty Name="bid_id" ColumnName="bid_id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="freelancer_id" ColumnName="freelancer_id" />
+          <ScalarProperty Name="bid_amount" ColumnName="bid_amount" />
+          <ScalarProperty Name="proposal_text" ColumnName="proposal_text" />
+          <ScalarProperty Name="bidstime" ColumnName="bidstime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calendar_events">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.calendar_events">
+        <MappingFragment StoreEntitySet="calendar_events">
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="event_title" ColumnName="event_title" />
+          <ScalarProperty Name="event_description" ColumnName="event_description" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chatmessages">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.chatmessage">
+        <MappingFragment StoreEntitySet="chatmessages">
+          <ScalarProperty Name="message_id" ColumnName="message_id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="receiver_id" ColumnName="receiver_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="chattime" ColumnName="chattime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.project">
+        <MappingFragment StoreEntitySet="projects">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="project_description" ColumnName="project_description" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reported_issues">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.reported_issues">
+        <MappingFragment StoreEntitySet="reported_issues">
+          <ScalarProperty Name="report_id" ColumnName="report_id" />
+          <ScalarProperty Name="reporter_id" ColumnName="reporter_id" />
+          <ScalarProperty Name="reported_user_id" ColumnName="reported_user_id" />
+          <ScalarProperty Name="report_content" ColumnName="report_content" />
+          <ScalarProperty Name="report_status" ColumnName="report_status" />
+          <ScalarProperty Name="reported_time" ColumnName="reported_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reviews_ratings">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.reviews_ratings">
+        <MappingFragment StoreEntitySet="reviews_ratings">
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="reviewed_user_id" ColumnName="reviewed_user_id" />
+          <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+          <ScalarProperty Name="rating_score" ColumnName="rating_score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_profiles">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.user_profiles">
+        <MappingFragment StoreEntitySet="user_profiles">
+          <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="bio" ColumnName="bio" />
+          <ScalarProperty Name="portfolio" ColumnName="portfolio" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="skills" ColumnName="skills" />
+          <ScalarProperty Name="contact_information" ColumnName="contact_information" />
+          <ScalarProperty Name="social_media_links" ColumnName="social_media_links" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usersdatas">
+      <EntityTypeMapping TypeName="Freelancer_Marketplace_DBModel.usersdata">
+        <MappingFragment StoreEntitySet="usersdata">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="profile_picture" ColumnName="profile_picture" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+          <ScalarProperty Name="last_login_date" ColumnName="last_login_date" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddReviewAndRating" FunctionName="Freelancer_Marketplace_DBModel.Store.AddReviewAndRating" />
+    <FunctionImportMapping FunctionImportName="CloseProject" FunctionName="Freelancer_Marketplace_DBModel.Store.CloseProject" />
+    <FunctionImportMapping FunctionImportName="CreateProject" FunctionName="Freelancer_Marketplace_DBModel.Store.CreateProject" />
+    <FunctionImportMapping FunctionImportName="GetBidsForProject" FunctionName="Freelancer_Marketplace_DBModel.Store.GetBidsForProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetBidsForProject_Result">
+          <ScalarProperty Name="bid_id" ColumnName="bid_id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="freelancer_id" ColumnName="freelancer_id" />
+          <ScalarProperty Name="bid_amount" ColumnName="bid_amount" />
+          <ScalarProperty Name="proposal_text" ColumnName="proposal_text" />
+          <ScalarProperty Name="bidstime" ColumnName="bidstime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetMessagesInConversation" FunctionName="Freelancer_Marketplace_DBModel.Store.GetMessagesInConversation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetMessagesInConversation_Result">
+          <ScalarProperty Name="message_id" ColumnName="message_id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="receiver_id" ColumnName="receiver_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="chattime" ColumnName="chattime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetProjectByID" FunctionName="Freelancer_Marketplace_DBModel.Store.GetProjectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetProjectByID_Result">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="project_description" ColumnName="project_description" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserByID" FunctionName="Freelancer_Marketplace_DBModel.Store.GetUserByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetUserByID_Result">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="profile_picture" ColumnName="profile_picture" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+          <ScalarProperty Name="last_login_date" ColumnName="last_login_date" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserOpenProjects" FunctionName="Freelancer_Marketplace_DBModel.Store.GetUserOpenProjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetUserOpenProjects_Result">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="project_description" ColumnName="project_description" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserProfileByID" FunctionName="Freelancer_Marketplace_DBModel.Store.GetUserProfileByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetUserProfileByID_Result">
+          <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="bio" ColumnName="bio" />
+          <ScalarProperty Name="portfolio" ColumnName="portfolio" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="skills" ColumnName="skills" />
+          <ScalarProperty Name="contact_information" ColumnName="contact_information" />
+          <ScalarProperty Name="social_media_links" ColumnName="social_media_links" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserProjects" FunctionName="Freelancer_Marketplace_DBModel.Store.GetUserProjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Freelancer_Marketplace_DBModel.GetUserProjects_Result">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="project_description" ColumnName="project_description" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SendMessage" FunctionName="Freelancer_Marketplace_DBModel.Store.SendMessage" />
+    <FunctionImportMapping FunctionImportName="SubmitBid" FunctionName="Freelancer_Marketplace_DBModel.Store.SubmitBid" />
+    <FunctionImportMapping FunctionImportName="UpdateProjectStatus" FunctionName="Freelancer_Marketplace_DBModel.Store.UpdateProjectStatus" />
+    <FunctionImportMapping FunctionImportName="UpdateUserProfile" FunctionName="Freelancer_Marketplace_DBModel.Store.UpdateUserProfile" />
+  </EntityContainerMapping>
+</Mapping>

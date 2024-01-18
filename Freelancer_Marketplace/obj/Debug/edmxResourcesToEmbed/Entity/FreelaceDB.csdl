@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Freelancer_Marketplace_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bid">
+    <Key>
+      <PropertyRef Name="bid_id" />
+    </Key>
+    <Property Name="bid_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="project_id" Type="Int32" Nullable="false" />
+    <Property Name="freelancer_id" Type="Int32" Nullable="false" />
+    <Property Name="bid_amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="proposal_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="bidstime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__bids__freelancer__76969D2E" FromRole="bids" ToRole="usersdata" />
+    <NavigationProperty Name="project" Relationship="Self.FK__bids__project_id__75A278F5" FromRole="bids" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="calendar_events">
+    <Key>
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="event_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="event_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__calendar___useri__6E01572D" FromRole="calendar_events" ToRole="usersdata" />
+  </EntityType>
+  <EntityType Name="chatmessage">
+    <Key>
+      <PropertyRef Name="message_id" />
+    </Key>
+    <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_id" Type="Int32" Nullable="false" />
+    <Property Name="receiver_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="chattime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__chatmessa__recei__7B5B524B" FromRole="chatmessages" ToRole="usersdata" />
+    <NavigationProperty Name="usersdata1" Relationship="Self.FK__chatmessa__sende__7A672E12" FromRole="chatmessages" ToRole="usersdata" />
+  </EntityType>
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="project_id" />
+    </Key>
+    <Property Name="project_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="client_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="project_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="budget" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="deadline" Type="DateTime" Precision="0" />
+    <Property Name="project_status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="date_created" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="bids" Relationship="Self.FK__bids__project_id__75A278F5" FromRole="projects" ToRole="bids" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__projects__client__5FB337D6" FromRole="projects" ToRole="usersdata" />
+  </EntityType>
+  <EntityType Name="reported_issues">
+    <Key>
+      <PropertyRef Name="report_id" />
+    </Key>
+    <Property Name="report_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reporter_id" Type="Int32" Nullable="false" />
+    <Property Name="reported_user_id" Type="Int32" Nullable="false" />
+    <Property Name="report_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="report_status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="reported_time" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__reported___repor__70DDC3D8" FromRole="reported_issues" ToRole="usersdata" />
+    <NavigationProperty Name="usersdata1" Relationship="Self.FK__reported___repor__71D1E811" FromRole="reported_issues" ToRole="usersdata" />
+  </EntityType>
+  <EntityType Name="reviews_ratings">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reviewed_user_id" Type="Int32" Nullable="false" />
+    <Property Name="reviewer_id" Type="Int32" Nullable="false" />
+    <Property Name="rating_score" Type="Int32" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__reviews_r__revie__6A30C649" FromRole="reviews_ratings" ToRole="usersdata" />
+    <NavigationProperty Name="usersdata1" Relationship="Self.FK__reviews_r__revie__6B24EA82" FromRole="reviews_ratings" ToRole="usersdata" />
+  </EntityType>
+  <EntityType Name="user_profiles">
+    <Key>
+      <PropertyRef Name="profile_id" />
+    </Key>
+    <Property Name="profile_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="portfolio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="contact_information" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="social_media_links" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usersdata" Relationship="Self.FK__user_prof__user___7F2BE32F" FromRole="user_profiles" ToRole="usersdata" />
+  </EntityType>
+  <EntityType Name="usersdata">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userpassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="profile_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="registration_date" Type="DateTime" Precision="3" />
+    <Property Name="last_login_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="bids" Relationship="Self.FK__bids__freelancer__76969D2E" FromRole="usersdata" ToRole="bids" />
+    <NavigationProperty Name="calendar_events" Relationship="Self.FK__calendar___useri__6E01572D" FromRole="usersdata" ToRole="calendar_events" />
+    <NavigationProperty Name="chatmessages" Relationship="Self.FK__chatmessa__recei__7B5B524B" FromRole="usersdata" ToRole="chatmessages" />
+    <NavigationProperty Name="chatmessages1" Relationship="Self.FK__chatmessa__sende__7A672E12" FromRole="usersdata" ToRole="chatmessages" />
+    <NavigationProperty Name="projects" Relationship="Self.FK__projects__client__5FB337D6" FromRole="usersdata" ToRole="projects" />
+    <NavigationProperty Name="reported_issues" Relationship="Self.FK__reported___repor__70DDC3D8" FromRole="usersdata" ToRole="reported_issues" />
+    <NavigationProperty Name="reported_issues1" Relationship="Self.FK__reported___repor__71D1E811" FromRole="usersdata" ToRole="reported_issues" />
+    <NavigationProperty Name="reviews_ratings" Relationship="Self.FK__reviews_r__revie__6A30C649" FromRole="usersdata" ToRole="reviews_ratings" />
+    <NavigationProperty Name="reviews_ratings1" Relationship="Self.FK__reviews_r__revie__6B24EA82" FromRole="usersdata" ToRole="reviews_ratings" />
+    <NavigationProperty Name="user_profiles" Relationship="Self.FK__user_prof__user___7F2BE32F" FromRole="usersdata" ToRole="user_profiles" />
+  </EntityType>
+  <Association Name="FK__bids__freelancer__76969D2E">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="bids" Type="Self.bid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="bids">
+        <PropertyRef Name="freelancer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bids__project_id__75A278F5">
+    <End Role="projects" Type="Self.project" Multiplicity="1" />
+    <End Role="bids" Type="Self.bid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="project_id" />
+      </Principal>
+      <Dependent Role="bids">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__calendar___useri__6E01572D">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="calendar_events" Type="Self.calendar_events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="calendar_events">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chatmessa__recei__7B5B524B">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="chatmessages" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="chatmessages">
+        <PropertyRef Name="receiver_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chatmessa__sende__7A672E12">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="chatmessages" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="chatmessages">
+        <PropertyRef Name="sender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__projects__client__5FB337D6">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="projects" Type="Self.project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reported___repor__70DDC3D8">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="reported_issues" Type="Self.reported_issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="reported_issues">
+        <PropertyRef Name="reporter_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reported___repor__71D1E811">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="reported_issues" Type="Self.reported_issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="reported_issues">
+        <PropertyRef Name="reported_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reviews_r__revie__6A30C649">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="reviews_ratings" Type="Self.reviews_ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="reviews_ratings">
+        <PropertyRef Name="reviewed_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reviews_r__revie__6B24EA82">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="reviews_ratings" Type="Self.reviews_ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="reviews_ratings">
+        <PropertyRef Name="reviewer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user_prof__user___7F2BE32F">
+    <End Role="usersdata" Type="Self.usersdata" Multiplicity="1" />
+    <End Role="user_profiles" Type="Self.user_profiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usersdata">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="user_profiles">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FreelanceDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bids" EntityType="Self.bid" />
+    <EntitySet Name="calendar_events" EntityType="Self.calendar_events" />
+    <EntitySet Name="chatmessages" EntityType="Self.chatmessage" />
+    <EntitySet Name="projects" EntityType="Self.project" />
+    <EntitySet Name="reported_issues" EntityType="Self.reported_issues" />
+    <EntitySet Name="reviews_ratings" EntityType="Self.reviews_ratings" />
+    <EntitySet Name="user_profiles" EntityType="Self.user_profiles" />
+    <EntitySet Name="usersdatas" EntityType="Self.usersdata" />
+    <AssociationSet Name="FK__bids__freelancer__76969D2E" Association="Self.FK__bids__freelancer__76969D2E">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="bids" EntitySet="bids" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bids__project_id__75A278F5" Association="Self.FK__bids__project_id__75A278F5">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="bids" EntitySet="bids" />
+    </AssociationSet>
+    <AssociationSet Name="FK__calendar___useri__6E01572D" Association="Self.FK__calendar___useri__6E01572D">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="calendar_events" EntitySet="calendar_events" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chatmessa__recei__7B5B524B" Association="Self.FK__chatmessa__recei__7B5B524B">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="chatmessages" EntitySet="chatmessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chatmessa__sende__7A672E12" Association="Self.FK__chatmessa__sende__7A672E12">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="chatmessages" EntitySet="chatmessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__projects__client__5FB337D6" Association="Self.FK__projects__client__5FB337D6">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reported___repor__70DDC3D8" Association="Self.FK__reported___repor__70DDC3D8">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="reported_issues" EntitySet="reported_issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reported___repor__71D1E811" Association="Self.FK__reported___repor__71D1E811">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="reported_issues" EntitySet="reported_issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reviews_r__revie__6A30C649" Association="Self.FK__reviews_r__revie__6A30C649">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="reviews_ratings" EntitySet="reviews_ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reviews_r__revie__6B24EA82" Association="Self.FK__reviews_r__revie__6B24EA82">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="reviews_ratings" EntitySet="reviews_ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user_prof__user___7F2BE32F" Association="Self.FK__user_prof__user___7F2BE32F">
+      <End Role="usersdata" EntitySet="usersdatas" />
+      <End Role="user_profiles" EntitySet="user_profiles" />
+    </AssociationSet>
+    <FunctionImport Name="AddReviewAndRating">
+      <Parameter Name="reviewedUserID" Mode="In" Type="Int32" />
+      <Parameter Name="reviewerID" Mode="In" Type="Int32" />
+      <Parameter Name="ratingScore" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CloseProject">
+      <Parameter Name="projectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreateProject">
+      <Parameter Name="clientID" Mode="In" Type="Int32" />
+      <Parameter Name="projectTitle" Mode="In" Type="String" />
+      <Parameter Name="projectDescription" Mode="In" Type="String" />
+      <Parameter Name="projectBudget" Mode="In" Type="Decimal" />
+      <Parameter Name="projectDeadline" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetBidsForProject" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetBidsForProject_Result)">
+      <Parameter Name="projectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetMessagesInConversation" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetMessagesInConversation_Result)">
+      <Parameter Name="senderID" Mode="In" Type="Int32" />
+      <Parameter Name="recipientID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetProjectByID" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetProjectByID_Result)">
+      <Parameter Name="projectID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserByID" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetUserByID_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserOpenProjects" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetUserOpenProjects_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserProfileByID" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetUserProfileByID_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserProjects" ReturnType="Collection(Freelancer_Marketplace_DBModel.GetUserProjects_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SendMessage">
+      <Parameter Name="senderID" Mode="In" Type="Int32" />
+      <Parameter Name="recipientID" Mode="In" Type="Int32" />
+      <Parameter Name="messageContent" Mode="In" Type="String" />
+      <Parameter Name="chattime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SubmitBid">
+      <Parameter Name="projectID" Mode="In" Type="Int32" />
+      <Parameter Name="freelancerID" Mode="In" Type="Int32" />
+      <Parameter Name="bidAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="proposalText" Mode="In" Type="String" />
+      <Parameter Name="bidTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateProjectStatus">
+      <Parameter Name="projectID" Mode="In" Type="Int32" />
+      <Parameter Name="newStatus" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateUserProfile">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+      <Parameter Name="newBio" Mode="In" Type="String" />
+      <Parameter Name="newPortfolio" Mode="In" Type="String" />
+      <Parameter Name="newSkills" Mode="In" Type="String" />
+      <Parameter Name="newContactInfo" Mode="In" Type="String" />
+      <Parameter Name="newSocialLinks" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetBidsForProject_Result">
+    <Property Type="Int32" Name="bid_id" Nullable="false" />
+    <Property Type="Int32" Name="project_id" Nullable="false" />
+    <Property Type="Int32" Name="freelancer_id" Nullable="false" />
+    <Property Type="Decimal" Name="bid_amount" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="proposal_text" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="bidstime" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetMessagesInConversation_Result">
+    <Property Type="Int32" Name="message_id" Nullable="false" />
+    <Property Type="Int32" Name="sender_id" Nullable="false" />
+    <Property Type="Int32" Name="receiver_id" Nullable="false" />
+    <Property Type="String" Name="content" Nullable="true" />
+    <Property Type="DateTime" Name="chattime" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetProjectByID_Result">
+    <Property Type="Int32" Name="project_id" Nullable="false" />
+    <Property Type="Int32" Name="client_id" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="project_description" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="budget" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="deadline" Nullable="true" />
+    <Property Type="String" Name="project_status" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="date_created" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="GetUserByID_Result">
+    <Property Type="Int32" Name="userid" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="userpassword" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="profile_picture" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="registration_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="last_login_date" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="is_active" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserOpenProjects_Result">
+    <Property Type="Int32" Name="project_id" Nullable="false" />
+    <Property Type="Int32" Name="client_id" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="project_description" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="budget" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="deadline" Nullable="true" />
+    <Property Type="String" Name="project_status" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="date_created" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="GetUserProfileByID_Result">
+    <Property Type="Int32" Name="profile_id" Nullable="false" />
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="bio" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="portfolio" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="full_name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="location" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="skills" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="contact_information" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="social_media_links" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="GetUserProjects_Result">
+    <Property Type="Int32" Name="project_id" Nullable="false" />
+    <Property Type="Int32" Name="client_id" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="project_description" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="budget" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="deadline" Nullable="true" />
+    <Property Type="String" Name="project_status" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="date_created" Nullable="false" MaxLength="8" />
+  </ComplexType>
+</Schema>
